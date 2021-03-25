@@ -1,0 +1,20 @@
+{
+    "data": {
+    "id": 369,
+    "name": "Europe",
+    "slug": "1",
+    "tdwg_code": "1",
+    "tdwg_level": 1,
+    "species_count": 0,
+    "links": {
+        "self":"",
+        "plants":"",
+        "species":""
+    },
+    "parent": null,
+    "children": []
+    },
+    "meta": {
+    "last_modified": "2020-12-13T12:27:12.159Z"
+    }
+    }

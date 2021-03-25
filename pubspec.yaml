@@ -1,0 +1,148 @@
+name: myapp
+description: A new Flutter application.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  path_provider:
+  http:
+  dio: 3.0.10
+  image_gallery_saver: ^1.6.8
+  permission_handler: ^6.1.1
+  path:
+  fl_chart:
+  intl:
+  flutter_swiper:
+  carousel_slider: 3.0.0
+  sqflite:
+  get:
+  convex_bottom_bar:
+  url_launcher:
+  font_awesome_flutter:
+  flutter_slidable:
+  shared_preferences: 2.0.3
+  readmore: ^1.0.0
+  flutter_skeleton:
+  auto_size_text:
+  introduction_screen:
+  #device_info: ^0.4.2+8
+  feature_discovery:
+  filesize:
+  hive:
+  hive_flutter:
+  markdown:
+  pull_to_refresh:
+  cached_network_image:
+  double_back_to_close_app:
+  lazy_load_scrollview:
+  infinite_scroll_pagination:
+  flushbar:
+  shimmer:
+  flutter_cache_manager:
+  json_annotation:
+  connectivity:
+  progress_hud:
+  retry:
+  data_connection_checker:
+  flutter_progress_hud:
+  modal_progress_hud:
+  animate_do:
+  yaml: ^3.1.0
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  hive_generator:
+  build_runner:
+  flutter_launcher_icons:
+  #flutter_launcher_name:
+  flutter_native_splash:
+  json_serializable:
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
+
+flutter_launcher_name:
+  name: "Plant World"
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+  assets:
+    - assets/img/
+    - assets/json/division_orders_sets.json
+    - assets/json/division_sets.json
+
+
+  # To add assets to your application, add an assets section, like this:
+
+  #   - images/a_dot_burr.jpeg
+  #   - images/a_dot_ham.jpeg
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+    - family: EarthHeart
+      fonts:
+        - asset: fonts/earthheart/EarthHeart-JzPx.ttf
+    - family: OpenSans
+      fonts:
+        - asset: fonts/opensans/OpenSans-Bold.ttf
+        - asset: fonts/opensans/OpenSans-BoldItalic.ttf
+        - asset: fonts/opensans/OpenSans-ExtraBold.ttf
+        - asset: fonts/opensans/OpenSans-ExtraBoldItalic.ttf
+        - asset: fonts/opensans/OpenSans-Italic.ttf
+        - asset: fonts/opensans/OpenSans-Light.ttf
+        - asset: fonts/opensans/OpenSans-LightItalic.ttf
+        - asset: fonts/opensans/OpenSans-Regular.ttf
+        - asset: fonts/opensans/OpenSans-SemiBold.ttf
+        - asset: fonts/opensans/OpenSans-SemiBoldItalic.ttf
+
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
+
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
