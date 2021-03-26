@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:myapp/Controllers/details_controller.dart';
-import 'package:myapp/models/species.dart';
+import 'package:myapp/Controllers/offline_details_plant_controller.dart';
+import 'package:myapp/models/hive/speciesOfflineHive.dart';
 
-import 'constructorWidget.dart';
+import 'constructorWidgetOffline.dart';
 
-class GrowingShow extends StatelessWidget {
-  Species data;
-  GrowingShow({this.data});
-  ConstructorWidget cw = ConstructorWidget();
+class GrowingOffline extends StatelessWidget {
+  SpeciesOfflineHive data;
+  GrowingOffline({this.data});
+  ConstructorWidgetOffline cw = ConstructorWidgetOffline();
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DetailsController>(
-        init: DetailsController(),
+    return GetBuilder<OfflineDetailsPlantController>(
+        init: OfflineDetailsPlantController(),
         builder: (_) => Column(
               children: [
                 Divider(
@@ -45,7 +45,7 @@ class GrowingShow extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                cw.sliderBar(data.growth.light, 0, 100, 10, FontAwesomeIcons.cloud,FontAwesomeIcons.solidSun,true),
+                cw.sliderBar(data.growthLight, 0, 100, 10, FontAwesomeIcons.cloud,FontAwesomeIcons.solidSun,true),
 
                 SizedBox(
                   height: 20,
@@ -54,16 +54,16 @@ class GrowingShow extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                cw.sliderBar(data.growth.atmosphericHumidity, 0, 100, 10, FontAwesomeIcons.cloudRain,null,true),
+                cw.sliderBar(data.growthAtmosphericHumidity, 0, 100, 10, FontAwesomeIcons.cloudRain,null,true),
                 SizedBox(
                   height: 20,
                 ),
                 cw.twoValueText(
                     "Ph:",
                     "Best between ",
-                    data.growth.phMinimum.toString(),
+                    data.growthPhMinimum.toString(),
                     " and ",
-                    data.growth.phMaximum.toString(),
+                    data.growthPhMaximum.toString(),
                     "",
                     ""),
                 SizedBox(
@@ -72,9 +72,9 @@ class GrowingShow extends StatelessWidget {
                 cw.twoValueText(
                     "Precipitations:",
                     "Best between ",
-                    data.growth.minimumPrecipitation?.mm,
+                    data.growthMinimumPrecipitation,
                     " and ",
-                    data.growth.maximumPrecipitation?.mm,
+                    data.growthMaximumPrecipitation,
                     "",
                     " mm"),
                 SizedBox(
@@ -83,9 +83,9 @@ class GrowingShow extends StatelessWidget {
                 cw.twoValueText(
                     "Temperature(°C):",
                     "Best between ",
-                    data.growth.minimumTemperature?.degC.toString(),
+                    data.growthMinimumTemperature,
                     " and ",
-                    data.growth.maximumTemperature?.degC.toString(),
+                    data.growthMaximumTemperature,
                     "",
                     " °C"),
                 SizedBox(
@@ -94,9 +94,9 @@ class GrowingShow extends StatelessWidget {
                 cw.twoValueText(
                     "Temperature(°F):",
                     "Best between ",
-                    data.growth.minimumTemperature?.degF.toString(),
+                    data.growthMinimumTemperature,
                     " and ",
-                    data.growth.maximumTemperature?.degF.toString(),
+                    data.growthMaximumTemperature,
                     "",
                     " °F"),
               ],

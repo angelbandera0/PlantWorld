@@ -26,6 +26,7 @@ class CardImgHome extends StatelessWidget {
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data != null) {
+
                   return Material(
                     color: Colors.grey[800],
                     child: Center(
@@ -87,6 +88,7 @@ class CardImgHome extends StatelessWidget {
                       ),
                     ),
                   );
+
                 } else {
                   return Container();
                 }

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:myapp/Controllers/details_controller.dart';
-import 'package:myapp/models/species.dart';
-import 'package:myapp/screens/details/local_widgets/constructorWidget.dart';
+import 'package:myapp/Controllers/offline_details_plant_controller.dart';
+import 'package:myapp/models/hive/speciesOfflineHive.dart';
+import 'package:myapp/screens/offline/localWidgets/constructorWidgetOffline.dart';
 
-class SpecificationsShow extends StatelessWidget {
-  Species data;
-  SpecificationsShow({this.data});
-  ConstructorWidget cw = ConstructorWidget();
+class SpecificationsShowOffline extends StatelessWidget {
+  SpeciesOfflineHive data;
+  SpecificationsShowOffline({this.data});
+  ConstructorWidgetOffline cw = ConstructorWidgetOffline();
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DetailsController>(
-        init: DetailsController(),
+    return GetBuilder<OfflineDetailsPlantController>(
+        init: OfflineDetailsPlantController(),
         builder: (_) => Column(
               children: [
 
@@ -30,13 +30,13 @@ class SpecificationsShow extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                cw.oneValueText("Height:", data.specifications.averageHeight.cm,
+                cw.oneValueText("Height:", data.specificationsAverageHeight,
                     " cm average"),
                 SizedBox(
                   height: 20,
                 ),
                 cw.oneValueText(
-                    "Growth habit:", data.specifications.growthHabit, ""),
+                    "Growth habit:", data.specificationsGrowthHabit, ""),
                 SizedBox(
                   height: 20,
                 ),
@@ -52,11 +52,11 @@ class SpecificationsShow extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                cw.oneValueText("Conspicuous:", data.flower.conspicuous, ""),
+                cw.oneValueText("Conspicuous:", data.flowerConspicuous, ""),
                 SizedBox(
                   height: 20,
                 ),
-                cw.oneValueText("Flower Colors:", data.flower.color, ""),
+                cw.oneValueText("Flower Colors:", data.flowerColor.toString().replaceAll("[", "").replaceAll("]", ""), ""),
                 Divider(
                   height: 50,
                 ),
@@ -66,15 +66,15 @@ class SpecificationsShow extends StatelessWidget {
                   height: 20,
                 ),
                 cw.oneValueText(
-                    "Leaf Retention:", data.foliage.leafRetention, ""),
+                    "Leaf Retention:", data.foliageLeafRetention, ""),
                 SizedBox(
                   height: 20,
                 ),
-                cw.oneValueText("Texture:", data.foliage.texture, ""),
+                cw.oneValueText("Texture:", data.foliageTexture, ""),
                 SizedBox(
                   height: 20,
                 ),
-                cw.oneValueText("Color:", data.foliage.color, ""),
+                cw.oneValueText("Color:", data.foliageColor, ""),
                 Divider(
                   height: 50,
                 ),
@@ -83,11 +83,11 @@ class SpecificationsShow extends StatelessWidget {
                   height: 20,
                 ),
                 cw.oneValueText(
-                    "Conspicuous:", data.fruitOrSeed.conspicuous, ""),
+                    "Conspicuous:", data.fruitOrSeedConspicuous, ""),
                 SizedBox(
                   height: 20,
                 ),
-                cw.oneValueText("Fruit Colors:", data.fruitOrSeed.color, ""),
+                cw.oneValueText("Fruit Colors:", data.fruitOrSeedColor, ""),
               ],
               crossAxisAlignment: CrossAxisAlignment.start,
             ));

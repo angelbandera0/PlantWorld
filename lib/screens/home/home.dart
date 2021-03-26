@@ -111,7 +111,6 @@ class _HomeState extends State<Home> {
                                 builder: (BuildContext context,
                                     AsyncSnapshot<Box<dynamic>> snapshot) {
                                   if (snapshot.hasData) {
-                                    print(8231927391272313);
                                     List<dynamic> lsoh=snapshot.data.values.toList();
                                       lsoh.sort((a,b){
                                        return b.date.compareTo(a.date);

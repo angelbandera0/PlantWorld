@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:myapp/Controllers/details_controller.dart';
-import 'package:myapp/models/species.dart';
-import 'package:myapp/screens/details/local_widgets/constructorWidget.dart';
+import 'package:myapp/Controllers/offline_details_plant_controller.dart';
+import 'package:myapp/models/hive/speciesOfflineHive.dart';
+import 'package:myapp/screens/offline/localWidgets/constructorWidgetOffline.dart';
 
-class TacsonomiaShow extends StatelessWidget {
-  Species data;
-  TacsonomiaShow({this.data});
-  ConstructorWidget cw = ConstructorWidget();
+class TacsonomiaShowOffline extends StatelessWidget {
+  SpeciesOfflineHive data;
+  TacsonomiaShowOffline({this.data});
+  ConstructorWidgetOffline cw = ConstructorWidgetOffline();
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DetailsController>(
-        init: DetailsController(),
+    return GetBuilder<OfflineDetailsPlantController>(
+        init: OfflineDetailsPlantController(),
         builder: (_) => Column(
               children: [
 
@@ -24,19 +24,19 @@ class TacsonomiaShow extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                cw.oneValueText("Kingdom:", _.kingdom,""),
+                cw.oneValueText("Kingdom:", data.kingdom,""),
                 SizedBox(height: 20,),
-                cw.oneValueText("Subkingdom:", _.subkingdom,""),
+                cw.oneValueText("Subkingdom:", data.subkingdom,""),
                 SizedBox(height: 20,),
-                cw.oneValueText("Division:", _.division,""),
+                cw.oneValueText("Division:", data.division,""),
                 SizedBox(height: 20,),
-                cw.oneValueText("Class:", _.divisionClass,""),
+                cw.oneValueText("Class:", data.divisionClass,""),
                 SizedBox(height: 20,),
-                cw.oneValueText("Order:", _.divisionOrder,""),
+                cw.oneValueText("Order:", data.divisionOrder,""),
                 SizedBox(height: 20,),
-                cw.oneValueText("Family:", _.family,""),
+                cw.oneValueText("Family:", data.family,""),
                 SizedBox(height: 20,),
-                cw.oneValueText("Genus:", _.genus,""),
+                cw.oneValueText("Genus:", data.genus,""),
                 SizedBox(height: 20,),
               ],
               crossAxisAlignment: CrossAxisAlignment.start,

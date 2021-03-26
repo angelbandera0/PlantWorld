@@ -18,13 +18,8 @@ class PhotoFileController extends GetxController {
   Directory directory;
   Map<String, bool> mapDownloads = Map<String, bool>();
 
-  bool get loadingDownloadPhoto => _loadingDownloadPhoto;
+  get loadingDownloadPhoto => _loadingDownloadPhoto;
 
-//  PhotoFileController(SearchController sc){
-//    this.instanceSearchController=sc;
-//    print(this.instanceSearchController);
-//
-//  }
   @override
   void onInit() {
     // TODO: implement onInit
@@ -36,19 +31,22 @@ class PhotoFileController extends GetxController {
     _startDirectoryRoute();
   }
 
-  void _startDirectoryRoute() async {
-    directory = await getExternalStorageDirectory();
-    List<String> folders = directory.path.split("/");
-    for (int x = 1; x < folders.length; x++) {
-      String folder = folders[x];
-      if (folder != "Android") {
-        newPath += "/" + folder;
-      } else {
-        break;
+  void _startDirectoryRoute(){
+    getExternalStorageDirectory().then((value) {
+      directory=value;
+      List<String> folders = directory.path.split("/");
+      for (int x = 1; x < folders.length; x++) {
+        String folder = folders[x];
+        if (folder != "Android") {
+          newPath += "/" + folder;
+        } else {
+          break;
+        }
       }
-    }
-    newPath = newPath + "/MyPlantWorldApp";
-    directory = Directory(newPath);
+      newPath = newPath + "/MyPlantWorldApp";
+      directory = Directory(newPath);
+    });
+
 
   }
 
@@ -77,7 +75,6 @@ class PhotoFileController extends GetxController {
       //print(e);
     }
   }
-
   Future<bool> _requestPermission(Permission permission) async {
     if (await permission.isGranted) {
       return true;
@@ -104,5 +101,13 @@ class PhotoFileController extends GetxController {
     String dir = (await getApplicationDocumentsDirectory()).path;
     File f = new File('$newPath/$filename');
     return f;
+  }
+
+  bool existPhoto(String filename){
+    File file = new File('$newPath/$filename');
+    print(newPath);
+    bool a =file.existsSync();
+    print(a);
+    return a;
   }
 }

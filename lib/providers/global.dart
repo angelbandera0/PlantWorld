@@ -1,5 +1,5 @@
 class Global {
-  String token = 'your token';
+  String token = 'LHINexOwbYY-TdLrx0EbAaMedQEkuQO3qlDOeuNhp3Q';
   String url = 'trefle.io';
   String urlPart = '/api/v1';
 

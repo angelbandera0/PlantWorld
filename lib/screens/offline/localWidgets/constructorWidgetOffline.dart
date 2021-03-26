@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:myapp/models/SpeciesModels/source.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class ConstructorWidget {
+class ConstructorWidgetOffline {
   bool isValNullOrUnknown(dynamic v) {
     return v == null || v == "null" || v == "unknown";
   }

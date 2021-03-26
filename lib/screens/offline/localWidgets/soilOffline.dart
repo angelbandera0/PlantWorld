@@ -1,20 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:myapp/Controllers/details_controller.dart';
-import 'package:myapp/models/species.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/screens/details/local_widgets/constructorWidget.dart';
+import 'package:myapp/Controllers/offline_details_plant_controller.dart';
+import 'package:myapp/models/hive/speciesOfflineHive.dart';
+import 'package:myapp/screens/offline/localWidgets/constructorWidgetOffline.dart';
 
-class SoilShow extends StatelessWidget {
-  Species data;
-  SoilShow({this.data});
-  ConstructorWidget cw = ConstructorWidget();
+class SoilShowOffline extends StatelessWidget {
+  SpeciesOfflineHive data;
+  SoilShowOffline({this.data});
+  ConstructorWidgetOffline cw = ConstructorWidgetOffline();
   @override
   Widget build(BuildContext context) {
-    print(data.growth.soilSalinity ?? 0);
-    return GetBuilder<DetailsController>(
-        init: DetailsController(),
+    return GetBuilder<OfflineDetailsPlantController>(
+        init: OfflineDetailsPlantController(),
         builder: (_) => Column(children: [
               Divider(
                 height: 50,
@@ -45,7 +44,7 @@ class SoilShow extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              cw.sliderBar(data.growth.soilHumidity, 0, 10, 10,
+              cw.sliderBar(data.growthSoilHumidity, 0, 10, 10,
                   FontAwesomeIcons.fillDrip, null, false),
               SizedBox(
                 height: 20,
@@ -54,7 +53,7 @@ class SoilShow extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              cw.sliderBar(data.growth.soilNutriments, 0, 10, 10,
+              cw.sliderBar(data.growthSoilNutriments, 0, 10, 10,
                   FontAwesomeIcons.mortarPestle, null, false),
               SizedBox(
                 height: 20,
@@ -63,7 +62,7 @@ class SoilShow extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              cw.sliderBar(data.growth.soilSalinity, 0, 10, 10,
+              cw.sliderBar(data.growthSoilSalinity, 0, 10, 10,
                   FontAwesomeIcons.react, null, false),
               SizedBox(
                 height: 20,
@@ -73,7 +72,7 @@ class SoilShow extends StatelessWidget {
                 height: 20,
               ),
               cw.sliderBar(
-                  data.growth.soilTexture,
+                  data.growthSoilTexture,
                   0,
                   10,
                   10,

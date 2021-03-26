@@ -4,8 +4,10 @@ import 'package:myapp/screens/about/about.dart';
 import 'package:myapp/screens/details/details.dart';
 import 'package:myapp/screens/home/home.dart';
 import 'package:get/get.dart';
+import 'package:myapp/screens/offline/offline_list_plants.dart';
 import 'package:myapp/screens/settings.dart';
 import 'package:myapp/screens/splash_page.dart';
+import 'package:myapp/screens/terms/terms.dart';
 
 class DrawerNav extends StatelessWidget {
   @override
@@ -58,7 +60,7 @@ class DrawerNav extends StatelessWidget {
           leading: Icon(Icons.storage),
           onTap: () {
             Navigator.pop(context);
-            Get.to(DetailsPlant(),
+            Get.to(OfflineListPlants(),
                 transition: Transition.upToDown);
           },
         ),
@@ -67,7 +69,7 @@ class DrawerNav extends StatelessWidget {
           leading: Icon(Icons.settings),
           onTap: () {
             Navigator.pop(context);
-            Get.to(Settings(), transition: Transition.upToDown);
+            Get.to(()=>Settings(), transition: Transition.upToDown);
           },
         ),
         ListTile(
@@ -75,7 +77,7 @@ class DrawerNav extends StatelessWidget {
           leading: Icon(Icons.assignment),
           onTap: () {
             Navigator.pop(context);
-            Get.to(AboutUs(), transition: Transition.upToDown);
+            Get.to(Terms(), transition: Transition.upToDown);
           },
         ),
       ],

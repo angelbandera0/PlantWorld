@@ -13,6 +13,8 @@ import 'package:path_provider/path_provider.dart' as path_provider;
 
 class SettingsController extends GetxController {
   StringAuxMethods _stringAuxMethods = StringAuxMethods();
+  Directory directoryPhotos=new Directory("/storage/emulated/0/MyPlantWorldApp/");
+
   Box _boxImagesUrls;
   var cacheSize = 0.obs;
   var dbSizeSpecies = 0.obs;
@@ -38,7 +40,7 @@ class SettingsController extends GetxController {
               .then((value) {
             // print(value.file.lengthSync());
             cacheSize += value.file.lengthSync();
-            print(cacheSize.toString() + "zfjdzlfjlzj");
+
           }).catchError((error){});
         });
       });
@@ -79,6 +81,7 @@ class SettingsController extends GetxController {
   dbSize() async {
     final appDocumentDirectory =
         await path_provider.getApplicationDocumentsDirectory();
+
     FileSystemEntity sp;
     FileSystemEntity im;
     appDocumentDirectory.listSync().forEach((element) {
@@ -89,7 +92,7 @@ class SettingsController extends GetxController {
         dbSizeImagesUrls += element.statSync().size;
       }
     });
-    print(dbSizeSpecies.toString()+" "+dbSizeImagesUrls.toString());
+    directoryPhotos.listSync().forEach((e)=>dbSizeSpecies+=(e.statSync().size));
   }
 
   clearCache(){
@@ -97,17 +100,6 @@ class SettingsController extends GetxController {
     box.clear();
     cacheSize=0.obs;
     dbSizeImagesUrls=0.obs;
-    Get.snackbar("Notification:", "Cache clear sucessfully.",
-        icon: Icon(
-          Icons.info_outline,
-          size: 32,
-          color: Colors.white,
-        ),
-        margin: EdgeInsets.all(10),
-        borderRadius: 30,
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green,colorText: Colors.white);
-    //NotificationFlushbar().notificar("Cache clear sucessfully", Icons.info_outline);
     update(["settings"]);
 
   }
@@ -116,18 +108,8 @@ class SettingsController extends GetxController {
         value.clear();
         print(value.keys);
         dbSizeSpecies=0.obs;
-        Get.snackbar("Notification:", "Database clear sucessfully.",
-            icon: Icon(
-              Icons.info_outline,
-              size: 32,
-              color: Colors.white,
-            ),
-            margin: EdgeInsets.all(10),
-            borderRadius: 25,
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.green,colorText: Colors.white);
-        //NotificationFlushbar().notificar("Database clear sucessfully", Icons.info_outline);
-
+        directoryPhotos.listSync().forEach((e)=>e.delete());
+        Get.find<HomeController>().update();
         update(["settings"]);
 
       });

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:myapp/Controllers/details_controller.dart';
-import 'package:myapp/models/species.dart';
+import 'package:myapp/Controllers/offline_details_plant_controller.dart';
+import 'package:myapp/models/hive/speciesOfflineHive.dart';
 
-import 'constructorWidget.dart';
+import 'constructorWidgetOffline.dart';
 
-class HeadShow extends StatelessWidget {
-  Species data;
-  HeadShow({this.data});
-  ConstructorWidget cw = ConstructorWidget();
+class HeadShowOffline extends StatelessWidget {
+  SpeciesOfflineHive data;
+  HeadShowOffline({this.data});
+  ConstructorWidgetOffline cw = ConstructorWidgetOffline();
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DetailsController>(
-        init: DetailsController(),
+    return GetBuilder<OfflineDetailsPlantController>(
+        init: OfflineDetailsPlantController(),
         builder: (_) => Column(
           crossAxisAlignment:CrossAxisAlignment.start,
           children: [
