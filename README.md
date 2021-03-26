@@ -1,4 +1,4 @@
-# plant_world
+# Plant World
 
 A new Flutter application.
 
