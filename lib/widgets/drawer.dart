@@ -57,7 +57,7 @@ class DrawerNav extends StatelessWidget {
         ),
         ListTile(
           title: Text("Plants Consulted"),
-          leading: Icon(Icons.storage),
+          leading: Icon(Icons.spa),
           onTap: () {
             Navigator.pop(context);
             Get.to(OfflineListPlants(),

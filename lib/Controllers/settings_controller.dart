@@ -66,11 +66,11 @@ class SettingsController extends GetxController {
     }
   }
 
-  void restartDefaulBoolValues() {
-    Options.values.forEach((e) {
-      bool value = !(e == Options.darkMode || e == Options.downloadAuto);
-      PreferenceUtils.setBool(_stringAuxMethods.enumToString(e), value);
-    });
+  void restartDefaulBoolValues() async{
+
+    await PreferenceUtils.setBool(_stringAuxMethods.enumToString(Options.dataMobile), true);
+    await PreferenceUtils.setBool(_stringAuxMethods.enumToString(Options.wifi), true);
+    await PreferenceUtils.setBool(_stringAuxMethods.enumToString(Options.darkMode), false);
     update(["settings"]);
   }
 
@@ -88,9 +88,7 @@ class SettingsController extends GetxController {
       if (element.path.contains("species.hive")) {
         dbSizeSpecies += element.statSync().size;
       }
-      if (element.path.contains("images_urls.hive")) {
-        dbSizeImagesUrls += element.statSync().size;
-      }
+
     });
     directoryPhotos.listSync().forEach((e)=>dbSizeSpecies+=(e.statSync().size));
   }

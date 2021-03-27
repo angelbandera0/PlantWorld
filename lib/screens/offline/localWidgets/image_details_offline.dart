@@ -97,7 +97,7 @@ class ImageDetailsOffline extends StatelessWidget {
                 tag: tag,
                 child: Image.file(
                   file,
-                  height: Get.height,
+                  //height: Get.height,
                   width: Get.width,
                   fit: BoxFit.fill,
                 )),

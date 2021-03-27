@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:myapp/Controllers/photo_file_controller.dart';
 import 'package:myapp/models/hive/speciesOfflineHive.dart';
+import 'package:myapp/screens/offline/offline_details_plant.dart';
 import 'package:myapp/screens/settings.dart';
 
 class CardImgHome extends StatelessWidget {
@@ -40,8 +41,8 @@ class CardImgHome extends StatelessWidget {
                         child: InkWell(
                             splashColor: Colors.green,
                             onTap: () {
-                              Get.to(Settings());
-
+                              Get.to(()=>OfflineDetailsPlant(),
+                                  arguments: {'id': species.id}, transition: Transition.rightToLeftWithFade);
                             },
                             child: Align(
                               alignment: Alignment.center,
@@ -89,11 +90,18 @@ class CardImgHome extends StatelessWidget {
                     ),
                   );
 
-                } else {
-                  return Container();
+                }
+                else {
+                  return Container(
+                    child:Column(
+                      children: <Widget>[
+                        Text("No has data.")
+                      ],
+                    ),
+                  );
                 }
               } else {
-                return Container();
+                return CircularProgressIndicator();
               }
             }),
         borderRadius: BorderRadius.all(Radius.circular(20)));

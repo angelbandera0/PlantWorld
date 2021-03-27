@@ -111,30 +111,51 @@ class _HomeState extends State<Home> {
                                 builder: (BuildContext context,
                                     AsyncSnapshot<Box<dynamic>> snapshot) {
                                   if (snapshot.hasData) {
-                                    List<dynamic> lsoh=snapshot.data.values.toList();
-                                      lsoh.sort((a,b){
-                                       return b.date.compareTo(a.date);
+                                    if(snapshot.data.values.toList().length != 0) {
+                                      List<dynamic> lsoh = snapshot.data.values
+                                          .toList();
+                                      lsoh.sort((a, b) {
+                                        return b.date.compareTo(a.date);
                                       });
                                       print(min(4, lsoh.length));
 
-                                    return Container(
-                                        child: CarouselSlider(
-                                      options: CarouselOptions(
-                                        autoPlay: true,
-                                        aspectRatio: 2.0,
-                                        enlargeCenterPage: true,
-                                      ),
-                                      items:
-                                      lsoh.getRange(0, min(4, lsoh.length)).toList().map((i) {
-                                        return Builder(
-                                          builder: (BuildContext context) {
-                                            return CardImgHome(
-                                                i);
-                                          },
-                                        );
-                                      }).toList(),
-                                    ));
-                                  } else {
+                                      return Container(
+                                          child: CarouselSlider(
+                                            options: CarouselOptions(
+                                              autoPlay: true,
+                                              aspectRatio: 2.0,
+                                              enlargeCenterPage: true,
+                                            ),
+                                            items:
+                                            lsoh.getRange(
+                                                0, min(4, lsoh.length))
+                                                .toList()
+                                                .map((i) {
+                                              return Builder(
+                                                builder: (
+                                                    BuildContext context) {
+                                                  return CardImgHome(
+                                                      i);
+                                                },
+                                              );
+                                            }).toList(),
+                                          ));
+                                    }
+                                    else{
+                                      return  SingleChildScrollView(
+                                        child: Container(
+                                          child:Column(
+                                            children: <Widget>[
+                                              SizedBox(height: Get.height * 0.04,),
+                                              Icon(Icons.terrain,size: 90,),
+                                              Text("No has data.",style: TextStyle(fontSize: 16)),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  }
+                                  else {
                                     return Center(
                                         child: CircularProgressIndicator());
                                   }

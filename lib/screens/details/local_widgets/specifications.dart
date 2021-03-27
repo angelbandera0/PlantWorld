@@ -56,7 +56,7 @@ class SpecificationsShow extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                cw.oneValueText("Flower Colors:", data.flower.color, ""),
+                cw.oneValueText("Flower Colors:", data.flower.color.toString().replaceAll("[", "").replaceAll("]", ""), ""),
                 Divider(
                   height: 50,
                 ),
