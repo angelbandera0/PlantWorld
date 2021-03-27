@@ -22,8 +22,7 @@ class ImageDetailsOffline extends StatelessWidget {
     return GetBuilder<OfflineDetailsPlantController>(
       init: OfflineDetailsPlantController(),
       builder: (_) {
-        print("${_.speciesOfflineHive.id.toString()}.jpg");
-      return FutureBuilder(
+        return FutureBuilder(
       future: photoFileController.getLocalFile("${_.speciesOfflineHive.scientificName.toString().removeAllWhitespace.toLowerCase()}${ _.speciesOfflineHive.id.toString()}.jpg"),
     builder: (
     BuildContext context, AsyncSnapshot snapshot) {

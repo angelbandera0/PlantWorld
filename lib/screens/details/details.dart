@@ -59,8 +59,9 @@ class DetailsPlant extends StatelessWidget {
                                         child: Stack(
                                           children: [
                                             MainImageSpecies(
-                                              imageUrl: snapshot.data.imageUrl,
-                                              cont: cont,
+                                              snapshot.data.scientificName,
+                                              snapshot.data.id.toString(),
+                                              cont,
                                             ),
                                           ],
                                         ),
