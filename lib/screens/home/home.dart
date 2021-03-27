@@ -1,5 +1,6 @@
-import 'dart:ui';
 import 'dart:math';
+import 'dart:ui';
+
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
@@ -8,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:myapp/Controllers/home_controller.dart';
-import 'package:myapp/models/hive/speciesOfflineHive.dart';
 import 'package:myapp/providers/plant_provider.dart';
 import 'package:myapp/screens/home/localWidgets/search_input.dart';
 import 'package:myapp/widgets/appBar.dart';
@@ -23,6 +23,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
   final PlantProvider kp = PlantProvider();
   final bool c = Get.isDarkMode;
@@ -94,6 +95,7 @@ class _HomeState extends State<Home> {
                           ),
                           textAlign: TextAlign.center,
                         ),
+
                         SizedBox(
                           height: 40,
                         ),
@@ -163,6 +165,8 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                   ),
+
+
                 ],
               ),
               snackBar: SnackBar(

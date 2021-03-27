@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:feature_discovery/feature_discovery.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -71,14 +72,14 @@ class MyAppState extends State<MyApp> {
     Get.put(HiveGlobalController());
     Get.put(ConnectivityGlobalController());
 
-    return GetMaterialApp(
+    return FeatureDiscovery(child:GetMaterialApp(
       theme: (!PreferenceUtils.getBool(StringAuxMethods().enumToString(Options.darkMode),false))?AppTheme.lightTheme:AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
       title: 'Plant World',
       home: Home(),
       localizationsDelegates: [GlobalMaterialLocalizations.delegate],
       supportedLocales: [const Locale('en'), const Locale('es')],
-    );
+    ));
   }
 }
 

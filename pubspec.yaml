@@ -47,7 +47,7 @@ dependencies:
   flutter_skeleton:
   auto_size_text:
   introduction_screen:
-  #device_info: ^0.4.2+8
+  device_info: 2.0.0
   feature_discovery:
   filesize:
   hive:
