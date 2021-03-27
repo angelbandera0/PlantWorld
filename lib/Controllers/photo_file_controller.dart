@@ -27,13 +27,14 @@ class PhotoFileController extends GetxController {
 //    print(Get.find<SearchController>().toString()+"hgjgjgjgjgjgj");
     try {
       instanceSearchController = Get.find<SearchController>();
-    }catch(e){}
+    } catch (e) {}
     _startDirectoryRoute();
   }
 
-  void _startDirectoryRoute(){
+  void _startDirectoryRoute() {
     getExternalStorageDirectory().then((value) {
-      directory=value;
+      print(5);
+      directory = value;
       List<String> folders = directory.path.split("/");
       for (int x = 1; x < folders.length; x++) {
         String folder = folders[x];
@@ -46,11 +47,10 @@ class PhotoFileController extends GetxController {
       newPath = newPath + "/MyPlantWorldApp";
       directory = Directory(newPath);
     });
-
-
   }
 
-  Future<bool> savePhoto(String url, String filename, String id) async {
+  Future<bool> savePhoto(
+      String url, String filename, String id, bool flag) async {
     try {
       if (await _requestPermission(Permission.storage)) {
       } else {
@@ -58,7 +58,8 @@ class PhotoFileController extends GetxController {
       }
       if (!await directory.exists()) {
         await directory.create(recursive: true);
-      } else {
+      }
+      else {
         File saveFile = File(directory.path + "/$filename");
         //print(saveFile.path);
         HttpOverrides.global = new MyHttpOverrides();
@@ -66,15 +67,20 @@ class PhotoFileController extends GetxController {
         await dio.download(url, saveFile.path,
             onReceiveProgress: (downloaded, totalSize) {
           progress = downloaded / totalSize;
-          instanceSearchController.update([id]);
+          if (flag) {
+            instanceSearchController.update([id]);
+          }
         });
         progress = 0;
         return true;
       }
+      return true;
     } catch (e) {
       //print(e);
+      return false;
     }
   }
+
   Future<bool> _requestPermission(Permission permission) async {
     if (await permission.isGranted) {
       return true;
@@ -84,29 +90,36 @@ class PhotoFileController extends GetxController {
     }
   }
 
-  Future<void> downloadPhoto(
-      String id, String nombreCientifico, String url) async {
+  Future<bool> downloadPhoto(
+      String id, String nombreCientifico, String url, bool flag) async {
     _loadingDownloadPhoto = true;
-    //print(instanceSearchController.toString()+"dfghjkljhgfghjg");
-    instanceSearchController.update([id]);
-    bool download = await savePhoto(url,
-        "${nombreCientifico.removeAllWhitespace.toLowerCase() + id}.jpg", id);
+
+    if (flag) instanceSearchController.update([id]);
+
+    bool download = await savePhoto(
+        url,
+        "${nombreCientifico.removeAllWhitespace.toLowerCase() + id}.jpg",
+        id,
+        flag);
     _loadingDownloadPhoto = false;
     isPosibleDown = true;
-    //mapDownloads[id] = true;
-    instanceSearchController.update([id]);
+
+    if (flag) instanceSearchController.update([id]);
+
+    return download;
   }
 
-  Future<File> getLocalFile(String filename) async {
+  Future<File> getLocalFile(String filename, [String url]) async {
     String dir = (await getApplicationDocumentsDirectory()).path;
     File f = new File('$newPath/$filename');
+    print(f);
     return f;
   }
 
-  bool existPhoto(String filename){
+  bool existPhoto(String filename) {
     File file = new File('$newPath/$filename');
     print(newPath);
-    bool a =file.existsSync();
+    bool a = file.existsSync();
     print(a);
     return a;
   }

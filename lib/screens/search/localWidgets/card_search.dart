@@ -7,17 +7,17 @@ import 'package:get/get.dart';
 import 'package:myapp/Controllers/photo_file_controller.dart';
 import 'package:myapp/Controllers/search_controller.dart';
 import 'package:myapp/models/species.dart';
+import 'package:myapp/screens/search/localWidgets/shimer.dart';
 import 'package:myapp/shared_preferences/settings.dart';
 
-
 class CardSearch extends StatelessWidget {
-  var photoFileController;
+  PhotoFileController photoFileController;
   Species species;
 
-  CardSearch(Species species){
-    this.species=species;
+  CardSearch(Species species) {
+    this.species = species;
     Get.create(() => PhotoFileController());
-    photoFileController =(Get.find<PhotoFileController>());
+    photoFileController = (Get.find<PhotoFileController>());
   }
 
   @override
@@ -97,8 +97,8 @@ class CardSearch extends StatelessWidget {
                             top: Get.width * 0.36,
                             left: Get.width * 0.75,
                             child: InkWell(
-                              onTap: () =>
-                                  controller.navigateToDetailsSpecies(species.id),
+                              onTap: () => controller
+                                  .navigateToDetailsSpecies(species.id),
                               //sc.inc(),
                               child: Container(
                                 decoration: BoxDecoration(
@@ -130,21 +130,20 @@ class CardSearch extends StatelessWidget {
   Widget loadImage(SearchController _) {
     //solo carga si hay conexion
     if (_.connectionStatus != "none") {
-      //permite saber si se puede bajar automaticamente el recurso
       bool connection = PreferenceUtils.getBool(_.connectionStatus, true);
-      //obtine el archivo q se almacena en la cache
-
-      //_.defaultCacheManage.getFileFromCache(widget.species.imageUrl).;
-      //verifica q se pueda cargar la imagen
+      photoFileController
+          .getLocalFile(
+              "${species.scientificName.removeAllWhitespace.toLowerCase() + species.id.toString()}.jpg")
+          .then((value) => print(value));
+      //print("$connection ${photoFileController.isPosibleDown} ${_.box.get(species.id) != null} ${f.existsSync()}");
       if (connection ||
-          (photoFileController.isPosibleDown ||//mapDownloads[widget.species.id.toString()] ||
+          (photoFileController
+                  .isPosibleDown || //mapDownloads[widget.species.id.toString()] ||
               _.box.get(species.id) != null)) {
-        //se encarga de almacenar las urls de las imagenes
         if (species.imageUrl != null) {
           _.box.put(species.id, species.imageUrl);
         }
-        File f=File(photoFileController.newPath+"/${species.scientificName.removeAllWhitespace.toLowerCase() + species.id.toString()}.jpg");
-        print(f.existsSync());
+
         return Stack(
           children: [
             FutureBuilder(
@@ -153,113 +152,72 @@ class CardSearch extends StatelessWidget {
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.hasData) {
                     if (snapshot.data != null) {
-                      return new Image.file(
-                        snapshot.data,
-                        height: Get.width * 0.5,
-                        width: Get.width * 0.9,
-                        fit: BoxFit.cover,
-                      );
+                      //carga la imagen
+                      if (snapshot.data.existsSync()) {
+                        return new Image.file(
+                          snapshot.data,
+                          height: Get.width * 0.5,
+                          width: Get.width * 0.9,
+                          fit: BoxFit.cover,
+                        );
+                      }
+                      //baja la imagen sino se encuentra
+                      else {
+                        return FutureBuilder(
+                            future: photoFileController.downloadPhoto(
+                                species.id.toString(),
+                                species.scientificName,
+                                species.imageUrl,
+                                false),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<bool> snapshot) {
+                              if (snapshot.hasData) {
+                                if (snapshot.data != null) {
+                                  print(snapshot.data.toString() +
+                                      " mnf,zdnf,nzd,fn");
+                                  return FutureBuilder(
+                                      future: photoFileController.getLocalFile(
+                                          "${species.scientificName.removeAllWhitespace.toLowerCase() + species.id.toString()}.jpg"),
+                                      builder: (BuildContext context,
+                                          AsyncSnapshot snapshot) {
+                                        if (snapshot.hasData) {
+                                          if (snapshot.data != null) {
+                                            print(snapshot.data
+                                                    .existsSync()
+                                                    .toString() +
+                                                " mnf,zdnf,nzd,fn");
+
+                                            return new Image.file(
+                                              snapshot.data,
+                                              height: Get.width * 0.5,
+                                              width: Get.width * 0.9,
+                                              fit: BoxFit.cover,
+                                            );
+                                          } else {
+                                            return CircularProgressIndicator();
+                                          }
+                                        } else {
+                                          return CircularProgressIndicator();
+                                        }
+                                      });
+                                } else {
+                                  return CircularProgressIndicator();
+                                }
+                              }
+                              else {
+                                return ShimmerLoad();
+                              }
+                            });
+                      }
                     } else {
                       return CircularProgressIndicator();
                     }
                   } else {
-                    return Container();
+                    return Text("sdhkshdkzhd");
                   }
                 }),
 //            CachedNetworkImage(
-//              placeholder: (context, url) => SizedBox(
-//                height: Get.width * 0.5,
-//                width: Get.width * 0.9,
-//                child: Container(
-//                  width: double.infinity,
-//                  padding:
-//                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-//                  child: Column(
-//                    mainAxisSize: MainAxisSize.max,
-//                    children: <Widget>[
-//                      Expanded(
-//                        child: Shimmer.fromColors(
-//                          baseColor: Colors.grey[300],
-//                          highlightColor: Colors.grey[100],
-//                          child: Row(
-//                            crossAxisAlignment: CrossAxisAlignment.start,
-//                            children: [
-//                              Container(
-//                                width: 100.0,
-//                                height: 100.0,
-//                                color: Colors.white,
-//                              ),
-//                              const Padding(
-//                                padding: EdgeInsets.symmetric(horizontal: 8.0),
-//                              ),
-//                              Expanded(
-//                                child: Column(
-//                                  crossAxisAlignment: CrossAxisAlignment.start,
-//                                  children: <Widget>[
-//                                    Container(
-//                                      width: double.infinity,
-//                                      height: 8.0,
-//                                      color: Colors.white,
-//                                    ),
-//                                    const Padding(
-//                                      padding: EdgeInsets.symmetric(vertical: 2.0),
-//                                    ),
-//                                    Container(
-//                                      width: double.infinity,
-//                                      height: 8.0,
-//                                      color: Colors.white,
-//                                    ),
-//                                    const Padding(
-//                                      padding: EdgeInsets.symmetric(vertical: 2.0),
-//                                    ),
-//                                    Container(
-//                                      width: double.infinity,
-//                                      height: 8.0,
-//                                      color: Colors.white,
-//                                    ),
-//                                    const Padding(
-//                                      padding: EdgeInsets.symmetric(vertical: 2.0),
-//                                    ),
-//                                    Container(
-//                                      width: double.infinity,
-//                                      height: 8.0,
-//                                      color: Colors.white,
-//                                    ),
-//                                    const Padding(
-//                                      padding: EdgeInsets.symmetric(vertical: 2.0),
-//                                    ),
-//                                    Container(
-//                                      width: double.infinity,
-//                                      height: 8.0,
-//                                      color: Colors.white,
-//                                    ),
-//                                    const Padding(
-//                                      padding: EdgeInsets.symmetric(vertical: 2.0),
-//                                    ),
-//                                    Container(
-//                                      width: double.infinity,
-//                                      height: 8.0,
-//                                      color: Colors.white,
-//                                    ),
-//                                    const Padding(
-//                                      padding: EdgeInsets.symmetric(vertical: 2.0),
-//                                    ),
-//                                    Container(
-//                                      width: 40,
-//                                      height: 8.0,
-//                                      color: Colors.white,
-//                                    ),
-//                                  ],
-//                                ),
-//                              )
-//                            ],
-//                          ),
-//                        ),
-//                      ),
-//                    ],
-//                  ),
-//                ),
-//              ),
+//              placeholder: (context, url) =>
 //              fit: BoxFit.cover,
 //              imageUrl: widget.species.imageUrl,
 //              errorWidget: (context, url, error) => Icon(Icons.error),
@@ -300,7 +258,8 @@ class CardSearch extends StatelessWidget {
                         onPressed: () => photoFileController.downloadPhoto(
                             species.id.toString(),
                             species.scientificName,
-                            species.imageUrl),
+                            species.imageUrl,
+                            true),
                         child: Icon(
                           Icons.refresh,
                           size: 72,
@@ -310,19 +269,24 @@ class CardSearch extends StatelessWidget {
                 )
               : Center(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                          height: 50,
-                          width: 50,
-                          child: CircularProgressIndicator(
-                            value: photoFileController.progress,
-                            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                            strokeWidth: 6,
-                          )),
-                      Text('${(photoFileController.progress*100).toStringAsFixed(0)}%',style: TextStyle(color:Colors.white),)
-                    ],
-                  )),
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                        height: 50,
+                        width: 50,
+                        child: CircularProgressIndicator(
+                          value: photoFileController.progress,
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white),
+                          strokeWidth: 6,
+                        )),
+                    Text(
+                      '${(photoFileController.progress * 100).toStringAsFixed(0)}%',
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ],
+                )),
           height: Get.width * 0.5,
           width: Get.width * 0.9,
         );
@@ -330,4 +294,3 @@ class CardSearch extends StatelessWidget {
     }
   }
 }
-

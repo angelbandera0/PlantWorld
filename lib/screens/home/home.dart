@@ -115,6 +115,7 @@ class _HomeState extends State<Home> {
                                       lsoh.sort((a,b){
                                        return b.date.compareTo(a.date);
                                       });
+                                      print(min(4, lsoh.length));
 
                                     return Container(
                                         child: CarouselSlider(
