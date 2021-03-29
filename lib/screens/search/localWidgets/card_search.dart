@@ -23,7 +23,7 @@ class CardSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-
+print(Get.width*0.0556);
     return GetBuilder<SearchController>(
         id: species.id.toString(),
         builder: (controller) {
@@ -60,12 +60,13 @@ class CardSearch extends StatelessWidget {
                                     )
                                   ],
                                 ),
+
                                 height: Get.width * 0.5,
                                 width: Get.width * 0.9,
                               ),
                         Positioned(
                             top: Get.width * 0.35,
-                            left: 20,
+                            left: Get.width*0.0556,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -114,8 +115,8 @@ class CardSearch extends StatelessWidget {
                                     color: Colors.white,
                                   ),
                                 ),
-                                width: 55,
-                                height: 55,
+                                width: Get.width*0.15335,
+                                height: Get.height*0.0725,
                               ),
                             ))
                       ],
@@ -131,15 +132,9 @@ class CardSearch extends StatelessWidget {
     //solo carga si hay conexion
     if (_.connectionStatus != "none") {
       bool connection = PreferenceUtils.getBool(_.connectionStatus, true);
-      photoFileController
-          .getLocalFile(
-              "${species.scientificName.removeAllWhitespace.toLowerCase() + species.id.toString()}.jpg")
-          .then((value) => print(value));
-      //print("$connection ${photoFileController.isPosibleDown} ${_.box.get(species.id) != null} ${f.existsSync()}");
       if (connection ||
           (photoFileController
-                  .isPosibleDown || //mapDownloads[widget.species.id.toString()] ||
-              _.box.get(species.id) != null)) {
+                  .isPosibleDown || _.box.get(species.id) != null)) {
         if (species.imageUrl != null) {
           _.box.put(species.id, species.imageUrl);
         }
@@ -173,8 +168,6 @@ class CardSearch extends StatelessWidget {
                                 AsyncSnapshot<bool> snapshot) {
                               if (snapshot.hasData) {
                                 if (snapshot.data != null) {
-                                  print(snapshot.data.toString() +
-                                      " mnf,zdnf,nzd,fn");
                                   return FutureBuilder(
                                       future: photoFileController.getLocalFile(
                                           "${species.scientificName.removeAllWhitespace.toLowerCase() + species.id.toString()}.jpg"),
@@ -182,11 +175,6 @@ class CardSearch extends StatelessWidget {
                                           AsyncSnapshot snapshot) {
                                         if (snapshot.hasData) {
                                           if (snapshot.data != null) {
-                                            print(snapshot.data
-                                                    .existsSync()
-                                                    .toString() +
-                                                " mnf,zdnf,nzd,fn");
-
                                             return new Image.file(
                                               snapshot.data,
                                               height: Get.width * 0.5,
@@ -216,19 +204,7 @@ class CardSearch extends StatelessWidget {
                     return Text("sdhkshdkzhd");
                   }
                 }),
-//            CachedNetworkImage(
-//              placeholder: (context, url) =>
-//              fit: BoxFit.cover,
-//              imageUrl: widget.species.imageUrl,
-//              errorWidget: (context, url, error) => Icon(Icons.error),
-//              height: Get.width * 0.5,
-//              width: Get.width * 0.9,
-//            ),
-            /*Container(
-              color: Colors.black45.withOpacity(0.3),
-              height: Get.width * 0.5,
-              width: Get.width * 0.9,
-            )*/
+
             BackdropFilter(
               filter: ImageFilter.blur(
                 sigmaX: 0.4,

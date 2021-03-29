@@ -23,7 +23,7 @@ class NavBar extends StatelessWidget {
       if (Platform.isAndroid) {
         deviceData = _readAndroidBuildData(await deviceInfoPlugin.androidInfo);
         _deviceData=deviceData;
-        print(deviceData);
+
       }
     } on PlatformException {
       deviceData = <String, dynamic>{

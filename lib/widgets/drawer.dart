@@ -5,13 +5,14 @@ import 'package:myapp/screens/details/details.dart';
 import 'package:myapp/screens/home/home.dart';
 import 'package:get/get.dart';
 import 'package:myapp/screens/offline/offline_list_plants.dart';
-import 'package:myapp/screens/settings.dart';
+import 'file:///F:/Desarrollo/flutter/Nueva%20carpeta%20(2)/plant/plant_world/lib/screens/settings/settings.dart';
 import 'package:myapp/screens/splash_page.dart';
 import 'package:myapp/screens/terms/terms.dart';
 
 class DrawerNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print(Get.width*0.556);
     return ListView(
       padding: EdgeInsets.zero,
       children: [
@@ -21,8 +22,8 @@ class DrawerNav extends StatelessWidget {
                 Positioned(
                   child: Image(
                     image: AssetImage("assets/img/icon.png"),
-                    width: 200,
-                    height: 200,
+                    width: Get.width*0.556,
+                    height: Get.width*0.556,
                     //placeholder: AssetImage("assets/img/logo.jpg"),
                   ),
                   left: -35,

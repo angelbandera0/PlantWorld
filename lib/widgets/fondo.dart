@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FondoApp extends StatelessWidget {
   @override
@@ -37,12 +38,11 @@ class FondoApp extends StatelessWidget {
               ]),
              ),
         );
-
     return Stack(
       children: <Widget>[
         gradiente,
         Positioned(
-          top: -120.0,
+          top: -(Get.height*0.158),
           //left: -40,
           child: cajaRosa,
         )

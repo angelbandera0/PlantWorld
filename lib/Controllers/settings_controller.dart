@@ -8,7 +8,7 @@ import 'package:myapp/Controllers/home_controller.dart';
 import 'package:myapp/enums/options.dart';
 import 'package:myapp/shared_preferences/settings.dart';
 import 'package:myapp/support_class/string.dart';
-import 'package:myapp/widgets/notificacion_flusbar.dart';
+import 'package:myapp/widgets/notificacion_getx.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
 class SettingsController extends GetxController {

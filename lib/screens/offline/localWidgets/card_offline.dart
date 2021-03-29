@@ -64,7 +64,7 @@ class CardOffline extends StatelessWidget {
                   ),
                   Positioned(
                       top: Get.width * 0.35,
-                      left: 20,
+                      left: Get.width*0.0556,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -113,8 +113,8 @@ class CardOffline extends StatelessWidget {
                               color: Colors.white,
                             ),
                           ),
-                          width: 55,
-                          height: 55,
+                          width: Get.width*0.15335,
+                          height: Get.height*0.0725,
                         ),
                       ))
                 ],

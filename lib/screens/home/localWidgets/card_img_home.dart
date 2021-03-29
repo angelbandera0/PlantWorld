@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:myapp/Controllers/photo_file_controller.dart';
 import 'package:myapp/models/hive/speciesOfflineHive.dart';
 import 'package:myapp/screens/offline/offline_details_plant.dart';
-import 'package:myapp/screens/settings.dart';
+import 'file:///F:/Desarrollo/flutter/Nueva%20carpeta%20(2)/plant/plant_world/lib/screens/settings/settings.dart';
 
 class CardImgHome extends StatelessWidget {
   var photoFileController;

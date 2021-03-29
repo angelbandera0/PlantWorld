@@ -13,7 +13,7 @@ import 'package:myapp/models/species.dart';
 import 'package:myapp/providers/species_provider.dart';
 import 'package:myapp/screens/details/details.dart';
 import 'package:myapp/support_class/uriAux.dart';
-import 'package:myapp/widgets/notificacion_flusbar.dart';
+import 'package:myapp/widgets/notificacion_getx.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 

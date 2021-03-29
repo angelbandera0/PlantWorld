@@ -18,14 +18,6 @@ class Terms extends StatelessWidget {
 
           return Scaffold(
             key: _scaffoldState,
-            /* appBar: PreferredSize(
-              child: NavBar(
-                scaffoldState: _scaffoldState,
-                title: "About Us",
-                startPage: false,
-              ),
-              preferredSize: Size(Get.width, 100),
-            ),*/
             body: Stack(
               children: [
                 FondoApp(),
@@ -63,51 +55,62 @@ class Terms extends StatelessWidget {
                       children: [
                         Image(
                           image: AssetImage("assets/img/icon.png"),
-                          width: 150,
-                          height: 150,
+                          width: Get.height * 0.20,
+                          height: Get.height * 0.20,
                         ),
                         Text(
                           "Plant World",
                           style: TextStyle(
-                              fontSize: 55,
+                              fontSize: Get.width*0.155,
                               fontFamily: "EarthHeart",
                               color: Colors.green),
+                        ),
+                        Expanded(
+                          child: ListView(children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Text.rich(
+                                      TextSpan(text: "", style: TextStyle(), children: [
+                                        TextSpan(
+                                          text: "Version: ",
+                                          style: TextStyle(fontWeight: FontWeight.bold),
+                                        ),
+                                        TextSpan(text: "1.0.0")
+                                      ])),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Text(
+                                    "Terms of About",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green),
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  Text(
+                                    "With this application we do not seek any kind of profit or enrichment. We offer our services completely free of charge in order to help all those people who are looking for information related to the subject of plants and their characteristics. We heartily appreciate any kind of help or contribution.",
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  SizedBox(
+                                      height:10
+                                  ),
+                                  Text(
+                                    "We reject any enrichment activity through this application; as well as everything that attempts against the proper functioning of the app or tries to illegally modify the code or endanger the integrity, privacy and security of our users.",
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+
+                                ],
+                              ),
+                            ],scrollDirection: Axis.vertical,),
                         ),
                         SizedBox(
                           height: 10,
                         ),
-                        Text.rich(
-                            TextSpan(text: "", style: TextStyle(), children: [
-                          TextSpan(
-                            text: "Version: ",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          TextSpan(text: "1.0.0")
-                        ])),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Text(
-                          "Terms of About",
-                          style: TextStyle(
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.green),
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Text(
-                          "With this application we do not seek any kind of profit or enrichment. We offer our services completely free of charge in order to help all those people who are looking for information related to the subject of plants and their characteristics. We heartily appreciate any kind of help or contribution.",
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        SizedBox(
-                          height:10
-                        ),
-                        Text(
-                          "We reject any enrichment activity through this application; as well as everything that attempts against the proper functioning of the app or tries to illegally modify the code or endanger the integrity, privacy and security of our users.",
-                          style: TextStyle(fontSize: 16),
-                        ),
+
                       ],
                     ),
                   ),

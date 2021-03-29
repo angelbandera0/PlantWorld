@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
-import 'package:myapp/widgets/notificacion_flusbar.dart';
+import 'package:myapp/widgets/notificacion_getx.dart';
 
 class ConnectivityGlobalController extends GetxController {
   var _connectionStatus = ''.obs;

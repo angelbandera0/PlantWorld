@@ -70,98 +70,109 @@ class _HomeState extends State<Home> {
                           width: Get.height * 0.20,
                           height: Get.height * 0.20,
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          "Plant World",
-                          style: TextStyle(
-                              fontSize: 55,
-                              fontFamily: "EarthHeart",
-                              color: Colors.green),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        SearchInput(),
-                        SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          "Browse and contribute to the Trefle botanical data.",
-                          style: TextStyle(
-                            fontSize: 18,
-                            //fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-
-                        SizedBox(
-                          height: 40,
-                        ),
-                        Text(
-                          "Last Plants Visited",
-                          style: TextStyle(
-                            fontSize: 20,color: Colors.green,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
                         Expanded(
-                            child: FutureBuilder(
-                                future: Hive.openBox("species"),
-                                builder: (BuildContext context,
-                                    AsyncSnapshot<Box<dynamic>> snapshot) {
-                                  if (snapshot.hasData) {
-                                    if(snapshot.data.values.toList().length != 0) {
-                                      List<dynamic> lsoh = snapshot.data.values
-                                          .toList();
-                                      lsoh.sort((a, b) {
-                                        return b.date.compareTo(a.date);
-                                      });
-                                      print(min(4, lsoh.length));
+                          child: ListView(
+                            children: [
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Text(
+                                    "Plant World",
+                                    style: TextStyle(
+                                        fontSize: Get.width*0.155,
+                                        fontFamily: "EarthHeart",
+                                        color: Colors.green),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  SearchInput(),
+                                  SizedBox(
+                                    height: 4,
+                                  ),
+                                  Text(
+                                    "Browse and contribute to the Trefle botanical data.",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      //fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  SizedBox(
+                                    height: 40,
+                                  ),
+                                  Text(
+                                    "Last Plants Visited",
+                                    style: TextStyle(
+                                      fontSize: 20,color: Colors.green,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  FutureBuilder(
+                                      future: Hive.openBox("species"),
+                                      builder: (BuildContext context,
+                                          AsyncSnapshot<Box<dynamic>> snapshot) {
+                                        if (snapshot.hasData) {
+                                          if(snapshot.data.values.toList().length != 0) {
+                                            List<dynamic> lsoh = snapshot.data.values
+                                                .toList();
+                                            lsoh.sort((a, b) {
+                                              return b.date.compareTo(a.date);
+                                            });
+                                            print(min(4, lsoh.length));
 
-                                      return Container(
-                                          child: CarouselSlider(
-                                            options: CarouselOptions(
-                                              autoPlay: true,
-                                              aspectRatio: 2.0,
-                                              enlargeCenterPage: true,
-                                            ),
-                                            items:
-                                            lsoh.getRange(
-                                                0, min(4, lsoh.length))
-                                                .toList()
-                                                .map((i) {
-                                              return Builder(
-                                                builder: (
-                                                    BuildContext context) {
-                                                  return CardImgHome(
-                                                      i);
-                                                },
-                                              );
-                                            }).toList(),
-                                          ));
-                                    }
-                                    else{
-                                      return  SingleChildScrollView(
-                                        child: Container(
-                                          child:Column(
-                                            children: <Widget>[
-                                              SizedBox(height: Get.height * 0.04,),
-                                              Icon(Icons.terrain,size: 90,),
-                                              Text("No has data.",style: TextStyle(fontSize: 16)),
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                  }
-                                  else {
-                                    return Center(
-                                        child: CircularProgressIndicator());
-                                  }
-                                }))
+                                            return Container(
+                                                child: CarouselSlider(
+                                                  options: CarouselOptions(
+                                                    autoPlay: true,
+                                                    aspectRatio: 2.0,
+                                                    enlargeCenterPage: true,
+                                                  ),
+                                                  items:
+                                                  lsoh.getRange(
+                                                      0, min(4, lsoh.length))
+                                                      .toList()
+                                                      .map((i) {
+                                                    return Builder(
+                                                      builder: (
+                                                          BuildContext context) {
+                                                        return CardImgHome(
+                                                            i);
+                                                      },
+                                                    );
+                                                  }).toList(),
+                                                )
+                                            );
+                                          }
+                                          else{
+                                            return  Container(
+                                              child:Column(
+                                                children: <Widget>[
+                                                  SizedBox(height: Get.height * 0.03,),
+                                                  Icon(Icons.terrain,size: 90,),
+                                                  Text("No has data.",style: TextStyle(fontSize: 16)),
+                                                ],
+                                              ),
+                                            );
+                                          }
+                                        }
+                                        else {
+                                          return Center(
+                                              child: CircularProgressIndicator());
+                                        }
+                                      })
+
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   ),

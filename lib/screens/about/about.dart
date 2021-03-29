@@ -58,52 +58,62 @@ class AboutUs extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Image(
-                                image: AssetImage("assets/img/icon.png"),
-                                width: 150,
-                                height: 150,
-                              ),
-
+                            image: AssetImage("assets/img/icon.png"),
+                            width: Get.height * 0.20,
+                            height: Get.height * 0.20,
+                          ),
                           Text(
                             "Plant World",
                             style: TextStyle(
-                                fontSize: 55,
+                                fontSize: Get.width*0.155,
                                 fontFamily: "EarthHeart",
                                 color: Colors.green),
                           ),
                           SizedBox(
                             height: 10,
                           ),
-                          Text.rich(TextSpan(
-                            text: "",
-                            style: TextStyle(),
-                            children: [
-                              TextSpan(text: "Version: ", style: TextStyle(fontWeight: FontWeight.bold),),
-                              TextSpan(text: "1.0.0")]
-                          )),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Text("Work Team",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.green),),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Text("Management",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.green),),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text("MSc. Mabelkis Terry Rosabal",style: TextStyle(fontSize: 16),),
-                          Text("+53 55434334",style: TextStyle(fontSize: 16),),
+                          Expanded(
+                            child: ListView(
+                              children: [
+                                Column(
+                                  crossAxisAlignment:CrossAxisAlignment.center,
+                                  children: [
+                                    Text.rich(TextSpan(
+                                      text: "",
+                                      style: TextStyle(),
+                                      children: [
+                                        TextSpan(text: "Version: ", style: TextStyle(fontWeight: FontWeight.bold),),
+                                        TextSpan(text: "1.0.0")]
+                                    )),
+                                    SizedBox(
+                                      height: 30,
+                                    ),
+                                    Text("Work Team",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.green),),
+                                    SizedBox(
+                                      height: 30,
+                                    ),
+                                    Text("Management",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.green),),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text("MSc. Mabelkis Terry Rosabal",style: TextStyle(fontSize: 16),),
+                                    Text("+53 55434334",style: TextStyle(fontSize: 16),),
+                                    SizedBox(
+                                      height: 30,
+                                    ),
+                                    Text("Development & Desing",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.green),),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Text("Angel Ernesto Hernández Bandera",style: TextStyle(fontSize: 16,),),
+                                    Text("angelbandera0@gmail.com",style: TextStyle(fontSize: 16,),),
+                                    Text("+53 58682295",style: TextStyle(fontSize: 16,),),
 
-                          SizedBox(
-                            height: 30,
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                          Text("Development & Desing",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.green),),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text("Angel Ernesto Hernández Bandera",style: TextStyle(fontSize: 16,),),
-                          Text("angelbandera0@gmail.com",style: TextStyle(fontSize: 16,),),
-                          Text("+53 58682295",style: TextStyle(fontSize: 16,),),
 
                         ],
                       ),
