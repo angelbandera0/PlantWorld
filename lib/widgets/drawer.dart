@@ -5,7 +5,7 @@ import 'package:myapp/screens/details/details.dart';
 import 'package:myapp/screens/home/home.dart';
 import 'package:get/get.dart';
 import 'package:myapp/screens/offline/offline_list_plants.dart';
-import 'file:///F:/Desarrollo/flutter/Nueva%20carpeta%20(2)/plant/plant_world/lib/screens/settings/settings.dart';
+import 'package:myapp/screens/settings/settings.dart';
 import 'package:myapp/screens/splash_page.dart';
 import 'package:myapp/screens/terms/terms.dart';
 

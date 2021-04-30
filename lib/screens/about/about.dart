@@ -65,7 +65,7 @@ class AboutUs extends StatelessWidget {
                           Text(
                             "Plant World",
                             style: TextStyle(
-                                fontSize: Get.width*0.155,
+                                fontSize: Get.height*0.07325,
                                 fontFamily: "EarthHeart",
                                 color: Colors.green),
                           ),

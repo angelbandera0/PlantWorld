@@ -104,51 +104,10 @@ class NavBar extends StatelessWidget {
                       icon: Icon(
                         Icons.info_outline,
                         size: 28,
-                        color: color,
+                        color: color.withOpacity(0),
                       ),
                       onPressed: () {
-                        Get.defaultDialog(
-                            title: "Device Info",
-                            content: Container(
-                              margin: EdgeInsets.all(10),
-                          child: Column(
-                                children: <Widget>[
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text("Model: ",style: TextStyle(fontWeight: FontWeight.bold),),
-                                      Text(_deviceData['model']),
-                                    ],
-                                  ),
-                                  SizedBox(height: 10,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text("Security Path: ",style: TextStyle(fontWeight: FontWeight.bold),),
-                                      Text(_deviceData['version.securityPatch']),
-                                    ],
-                                  ),
-                                  SizedBox(height: 10,),
 
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text("Release Version: ",style: TextStyle(fontWeight: FontWeight.bold),),
-                                      Text(_deviceData['version.release']),
-                                    ],
-                                  ),
-                                  SizedBox(height: 10,),
-
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text("Incremental: ",style: TextStyle(fontWeight: FontWeight.bold),),
-                                      Text(_deviceData['version.incremental']),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ));
                       })
                   : IconButton(
                       icon: Icon(

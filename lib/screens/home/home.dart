@@ -42,6 +42,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    //print(Get.height*0.07325);
     return GetBuilder<HomeController>(
         init: HomeController(),
         builder: (_) {
@@ -81,7 +82,7 @@ class _HomeState extends State<Home> {
                                   Text(
                                     "Plant World",
                                     style: TextStyle(
-                                        fontSize: Get.width*0.155,
+                                        fontSize: Get.height*0.07325,
                                         fontFamily: "EarthHeart",
                                         color: Colors.green),
                                   ),
